@@ -7,7 +7,7 @@ Alpine based Docker image with cfssl tools installed
 Switch to terraform directory you wish to check, then run
 
 ```bash
-docker run --rm -it -v "$PWD:/home/security/workdir" ghcr.io/alastairhm/docker-cfssl certinfo -cert <cert file>
+docker run --rm -it -v "$PWD:/home/go/workdir" ghcr.io/alastairhm/docker-cfssl certinfo -cert <cert file>
 ```
 
 ```text
