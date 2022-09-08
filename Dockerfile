@@ -1,4 +1,4 @@
-FROM alpine:latest as terrafile
+FROM alpine:latest 
 
 RUN apk add --no-cache openssh git go bash make && \
     adduser -D -g "go" -s /bin/sh go && \
