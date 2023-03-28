@@ -2,6 +2,8 @@
 
 Alpine based Docker image with CloudFlare [cfssl tools](https://github.com/cloudflare/cfssl) installed.
 
+[![Deploy Docker](https://github.com/alastairhm/docker-cfssl/actions/workflows/deploy.yml/badge.svg)](https://github.com/alastairhm/docker-cfssl/actions/workflows/deploy.yml)
+
 ## Running
 
 Switch to directory with the cert you wish to check, then run
