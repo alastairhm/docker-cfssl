@@ -1,14 +1,11 @@
-FROM alpine:latest 
+FROM golang:alpine as builder
 
-RUN apk add --no-cache openssh git go bash make && \
-    adduser -D -g "go" -s /bin/sh go && \
-    mkdir -p /home/go/workdir /home/go/.ssh && \
-    chown go:go /home/go/workdir /home/go/.ssh && \
-    su - go -c "git clone --depth 1 https://github.com/cloudflare/cfssl.git" && \
-    su - go -c "cd cfssl && make " && \
-    cp /home/go/cfssl/bin/* /bin && \
-    rm -rf /home/go/cfssl
-USER go
+RUN apk add --no-cache openssh git make
+RUN git clone --depth 1 https://github.com/cloudflare/cfssl.git
+RUN cd cfssl && make 
+
+FROM alpine:latest
+COPY --from=builder /go/cfssl/bin/* /bin/
+RUN mkdir -p /home/go/workdir                                    
 WORKDIR /home/go/workdir
-
 ENTRYPOINT ["/bin/cfssl"]
